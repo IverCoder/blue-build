@@ -1,5 +1,5 @@
 ublue_variants:
-  - label: blue-build/template
+  - label: ivercoder/blue-build
     ks: /kickstart/ublue-os.ks
     flavors:
-      - label: blue-build/template
+      - label: blue-build
