@@ -1,49 +1,76 @@
-# image will be published to ghcr.io/<user>/<name>
-name: blue-build
-# description will be included in the image's metadata
+name: blue-build-nvidia
 description: My personal Fedora Atomic image, powered by BlueBuild's infrastructure
 
-# the base image to build on top of (FROM) and the version tag to use
 base-image: ghcr.io/ublue-os/silverblue-nvidia
-image-version: 39 # latest is also supported if you want new updates ASAP
+image-version: latest
 
-# module configuration, executed in order
-# you can include multiple instances of the same module
 modules:
   - type: files
     files:
       - usr: /usr
-          # copies config/files/usr into your image's /usr.
-          # put configuration files you want in /etc/ on a booted system 
-          # in /usr/etc/ in the image. read more in files module reference.
 
   - type: rpm-ostree
-    repos: # - https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-%OS_VERSION%/atim-starship-fedora-%OS_VERSION%.repo
+    repos:
     install:
-      # - micro
-      # - starship
+      - gnome-console
+      - powertop
     remove:
-      # example: removing firefox (in favor of the flatpak)
-      # "firefox" is the main package, "firefox-langpacks" is a dependency
-      # - firefox
-      # - firefox-langpacks # also remove firefox dependency (not required for all packages, this is a special case)
+      - firefox
+      - firefox-langpacks
+      - gnome-terminal
+      - gnome-terminal-nautilus
 
   - type: default-flatpaks
-    notify: true # Send notification after install/uninstall is finished (true/false)
-    system:
-      # If no repo information is specified, Flathub will be used by default
-      # repo-url: https://dl.flathub.org/repo/flathub.flatpakrepo
-      # repo-name: flathub
-      # repo-title: "Flathub (system-wide)" # Optional; this sets the remote's user-facing name in graphical frontends like GNOME Software
+    notify: true
+    user:
+      repo-url: https://dl.flathub.org/repo/flathub.flatpakrepo
+      repo-name: flathub
+      repo-title: "Flathub"
       install:
-        # - org.mozilla.firefox
-        # - org.gnome.Loupe
-        # - one.ablaze.floorp//lightning # This is an example of flatpak which has multiple branches in selection (flatpak//branch).
-        # Flatpak runtimes are not supported (like org.winehq.Wine//stable-23.08),
+        - io.github.Foldex.AdwSteamGtk # AdwSteamGtk
+        - io.bassi.Amberol # Amberol
+        - org.gnome.gitlab.somas.Apostrophe # Apostrophe
+        - cc.arduino.IDE2 # Arduino IDE v2
+        - org.kde.ark # Ark
+        - de.haeckerfelix.AudioSharing # Audio Sharing
+        - com.raggesilver.BlackBox # Black Box
+        - com.usebottles.bottles # Bottles
+        - org.gnome.Boxes # Boxes
+        - org.gnome.Builder # Builder
+        - org.gnome.Calculator # Calculator
+        - org.gnome.Calendar # Calendar
+        - org.gnome.Snapshot # Camera
+        - hu.kramo.Cartridges # Cartridges
+        - io.github.celluloid_player.Celluloid # Celluloid
+        - org.gnome.Characters # Characters
+        - com.clarahobbs.chessclock # Chess Clock
+        - org.gnome.clocks # Clocks
+        - dev.geopjr.Collision # Collision
+        - com.belmoussaoui.Decoder # Decoder
+        - com.mattjakeman.ExtensionManager # Extension Manager
+        - org.mozilla.firefox # Firefox
+        - com.github.tchx84.Flatseal # Flatseal
+        - it.mijorus.gearlever # Gear Lever
+        - org.gnome.Chess # GNOME Chess
+        - org.gimp.GIMP # GNU Image Manipulation Program
+        - com.github.GradienceTeam.Gradience # Gradience
+        - org.gnome.Loupe # Image Viewer
+        - org.gnome.World.Iotas # Iotas
+        - io.github.seadve.Kooha # Kooha
+        - org.kde.krita # Krita
+        - org.libreoffice.LibreOffice # LibreOffice
+        - org.gnome.Logs # Logs
+        - io.missioncenter.MissionCenter # Mission Center
+        - com.obsproject.Studio # OBS Studio
+        - org.onlyoffice.desktopeditors # ONLYOFFICE Desktop Editors
+        - org.gnome.Photos # Photos
+        - org.prismlauncher.PrismLauncher # Prism Launcher
+        - it.mijorus.smile # Smile
+        - com.valvesoftware.Steam # Steam
+        - org.gnome.NautilusPreviewer # Sushi
+        - io.github.nokse22.teleprompter # Teleprompter
+        - org.gnome.TextEditor # Text Editor
+        - io.github.flattool.Warehouse # Warehouse
+        - app.drey.Warp # Warp
 
-      # only normal flatpak applications are (like Floorp Lightning web browser in this example).
-      # Installing different branches of the same Flatpak is not supported.
-      remove:
-        # - org.gnome.eog
-
-  - type: signing # this sets up the proper policy & signing files for signed images to work fully
+  - type: signing
