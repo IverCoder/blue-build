@@ -1,5 +1,5 @@
 ublue_variants:
-  - label: ivercoder/blue-build
+  - label: ivercoder/blue-build-nvidia
     ks: /kickstart/ublue-os.ks
     flavors:
-      - label: blue-build
+      - label: blue-build-nvidia
