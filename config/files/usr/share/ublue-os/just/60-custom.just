@@ -6,6 +6,8 @@ personal-setup:
     ujust arduino-sandbox
     ujust bottles-runtimes
     ujust bypass-prism-launcher-drm
+    ujust firefox-gnome-theme
+    echo Also run `ujust configure-nvidia-optimus power-management` and optionally `ujust configure-nvidia-optimus igpu-workaround` after restarting, when the NVIDIA driver gets activated.
 
 # Fix GRUB entries
 fix-grub:
@@ -28,3 +30,9 @@ bottles-runtimes:
 bypass-prism-launcher-drm:
     touch ~/.var/app/org.prismlauncher.PrismLauncher/data/PrismLauncher/accounts.json
     echo '{"accounts": [{"entitlement": {"canPlayMinecraft": true,"ownsMinecraft": true},"type": "Offline"}],"formatVersion": 3}' > ~/.var/app/org.prismlauncher.PrismLauncher/data/PrismLauncher/accounts.json
+
+# Install the Firefox GNOME theme
+firefox-gnome-theme:
+    flatpak run org.mozilla.firefox
+    sleep 5
+    curl -s -o- https://raw.githubusercontent.com/rafaelmardojai/firefox-gnome-theme/master/scripts/install-by-curl.sh | bash
