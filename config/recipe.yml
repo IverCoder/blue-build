@@ -16,6 +16,7 @@ modules:
       - github-desktop
       - gnome-console
       - powertop
+      - waydroid
     remove:
       - firefox
       - firefox-langpacks
