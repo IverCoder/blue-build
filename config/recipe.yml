@@ -2,7 +2,7 @@ name: blue-build-nvidia
 description: My personal Fedora Atomic image, powered by BlueBuild's infrastructure
 
 base-image: ghcr.io/ublue-os/silverblue-nvidia
-image-version: latest
+image-version: 40
 
 modules:
   - type: files
