@@ -13,9 +13,11 @@ modules:
     repos:
       - https://raw.githubusercontent.com/IverCoder/blue-build/main/repos/shiftkey-packages.repo
     install:
+      - freerdp
       - github-desktop
       - gnome-console
       - powertop
+      - virt-manager
       - waydroid
     remove:
       - firefox
